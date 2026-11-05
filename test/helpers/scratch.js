@@ -3,13 +3,16 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-// Each test worker gets its own scratch folder, wiped clean at the start of every test.
-const DIR = path.join(os.tmpdir(), `demo-shop-tests-${process.pid}`);
+const ROOT = path.join(os.tmpdir(), `demo-shop-tests-${process.pid}`);
+let nextDir = 0;
+
+fs.rmSync(ROOT, { recursive: true, force: true });
+fs.mkdirSync(ROOT, { recursive: true });
 
 function scratchDir() {
-  fs.rmSync(DIR, { recursive: true, force: true });
-  fs.mkdirSync(DIR, { recursive: true });
-  return DIR;
+  const dir = path.join(ROOT, `case-${++nextDir}`);
+  fs.mkdirSync(dir);
+  return dir;
 }
 
 module.exports = { scratchDir };
