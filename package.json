@@ -1,0 +1,12 @@
+{
+  "name": "cs146s-demo-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny shop backend used as a live background-agent demo in Stanford CS146S.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
